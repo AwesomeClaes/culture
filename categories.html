@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>电子商务专升本四班</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#8B5A2B',
+            secondary: '#D2B48C',
+            accent: '#CD853F',
+            light: '#F5F5DC',
+            dark: '#3E2723'
+          },
+          fontFamily: {
+            sans: ['Noto Sans SC', 'sans-serif'],
+            serif: ['Noto Serif SC', 'serif']
+          }
+        }
+      }
+    }
+  </script>
+  <style type="text/tailwindcss">
+    @layer utilities {
+      .content-auto {
+        content-visibility: auto;
+      }
+      .category-card {
+        transition: all 0.3s ease;
+      }
+      .category-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+      }
+      .section-fade {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.6s ease, transform 0.6s ease;
+      }
+      .section-fade.active {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="bg-light text-dark font-sans">
+  <!-- 导航栏 -->
+  <header id="navbar" class="fixed w-full z-50 transition-all duration-300 bg-light/90 backdrop-blur-sm shadow-sm">
+    <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+      <a href="index.html" class="flex items-center space-x-2">
+        <i class="fa fa-paint-brush text-primary text-2xl"></i>
+        <span class="font-serif font-bold text-xl md:text-2xl text-primary">匠心传承</span>
+      </a>
+      
+      <!-- 桌面导航 -->
+      <nav class="hidden md:flex items-center space-x-8">
+        <a href="index.html" class="font-medium hover:text-primary transition-colors">首页</a>
+        <div class="relative group">
+          <a href="categories.html" class="font-medium text-primary border-b-2 border-primary pb-1 flex items-center">
+            手工艺分类
+            <i class="fa fa-chevron-down ml-1 text-xs transition-transform group-hover:rotate-180"></i>
+          </a>
+          <div class="absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top scale-95 group-hover:scale-100">
+            <a href="categories.html#pottery" class="block px-4 py-2 hover:bg-light transition-colors">陶瓷艺术</a>
+            <a href="categories.html#weaving" class="block px-4 py-2 hover:bg-light transition-colors">传统编织</a>
+            <a href="categories.html#carving" class="block px-4 py-2 hover:bg-light transition-colors">木雕工艺</a>
+            <a href="categories.html#embroidery" class="block px-4 py-2 hover:bg-light transition-colors">刺绣技艺</a>
+          </div>
+        </div>
+        <a href="#" class="font-medium hover:text-primary transition-colors">传承人故事</a>
+        <a href="#" class="font-medium hover:text-primary transition-colors">文化活动</a>
+        <a href="#" class="font-medium hover:text-primary transition-colors">关于我们</a>
+      </nav>
+      
+      <!-- 移动端菜单按钮 -->
+      <button id="menuBtn" class="md:hidden text-dark focus:outline-none">
+        <i class="fa fa-bars text-xl"></i>
+      </button>
+    </div>
+    
+    <!-- 移动端导航菜单 -->
+    <div id="mobileMenu" class="md:hidden hidden bg-white shadow-lg absolute w-full">
+      <div class="container mx-auto px-4 py-3 flex flex-col space-y-4">
+        <a href="index.html" class="py-2 border-b border-gray-100">首页</a>
+        <div>
+          <a href="categories.html" class="flex justify-between items-center py-2 border-b border-gray-100 text-primary">
+            手工艺分类
+            <i class="fa fa-chevron-down text-xs"></i>
+          </a>
+          <div class="pl-4 mt-2 space-y-2">
+            <a href="categories.html#pottery" class="block py-1 hover:text-primary">陶瓷艺术</a>
+            <a href="categories.html#weaving" class="block py-1 hover:text-primary">传统编织</a>
+            <a href="categories.html#carving" class="block py-1 hover:text-primary">木雕工艺</a>
+            <a href="categories.html#embroidery" class="block py-1 hover:text-primary">刺绣技艺</a>
+          </div>
+        </div>
+        <a href="#" class="py-2 border-b border-gray-100">传承人故事</a>
+        <a href="#" class="py-2 border-b border-gray-100">文化活动</a>
+        <a href="#" class="py-2">关于我们</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- 页面标题区 -->
+  <section class="pt-28 pb-16 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="text-center max-w-3xl mx-auto">
+        <h1 class="font-serif font-bold text-[clamp(2rem,4vw,3rem)] text-dark mb-4">传统手工艺分类</h1>
+        <p class="text-gray-600 text-lg">中国传统手工艺历史悠久、种类繁多，每一类都蕴含着独特的文化内涵和地域特色。它们是中华民族智慧的结晶，也是世界文化宝库中的瑰宝。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 分类导航 -->
+  <section class="py-6 bg-gray-50 sticky top-16 z-40 shadow-sm">
+    <div class="container mx-auto px-4">
+      <div class="flex overflow-x-auto pb-2 hide-scrollbar">
+        <div class="flex space-x-2 md:space-x-4 mx-auto">
+          <a href="#pottery" class="whitespace-nowrap px-4 py-2 bg-primary text-white rounded-full text-sm font-medium">陶瓷艺术</a>
+          <a href="#weaving" class="whitespace-nowrap px-4 py-2 bg-white hover:bg-primary/10 text-gray-700 rounded-full text-sm font-medium transition-colors">传统编织</a>
+          <a href="#carving" class="whitespace-nowrap px-4 py-2 bg-white hover:bg-primary/10 text-gray-700 rounded-full text-sm font-medium transition-colors">木雕工艺</a>
+          <a href="#embroidery" class="whitespace-nowrap px-4 py-2 bg-white hover:bg-primary/10 text-gray-700 rounded-full text-sm font-medium transition-colors">刺绣技艺</a>
+          <a href="#" class="whitespace-nowrap px-4 py-2 bg-white hover:bg-primary/10 text-gray-700 rounded-full text-sm font-medium transition-colors">漆器工艺</a>
+          <a href="#" class="whitespace-nowrap px-4 py-2 bg-white hover:bg-primary/10 text-gray-700 rounded-full text-sm font-medium transition-colors">金属工艺</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 陶瓷艺术分类 -->
+  <section id="pottery" class="py-16 bg-white section-fade">
+    <div class="container mx-auto px-4">
+      <div class="flex flex-col md:flex-row gap-10 items-center mb-12">
+        <div class="md:w-1/3">
+          <img src="./image/jdztc.png" alt="陶瓷艺术" class="w-full h-auto rounded-lg shadow-lg">
+        </div>
+        <div class="md:w-2/3">
+          <span class="inline-block bg-secondary/30 text-primary text-sm px-3 py-1 rounded-full mb-3">历史最悠久的手工艺之一</span>
+          <h2 class="font-serif font-bold text-[clamp(1.5rem,3vw,2.2rem)] text-dark mb-4">陶瓷艺术</h2>
+          <p class="text-gray-600 mb-6 leading-relaxed">
+            中国陶瓷艺术是中国传统文化的重要组成部分，历史可追溯至新石器时代。从仰韶文化的彩陶到龙山文化的黑陶，从唐三彩到宋五大名窑，再到明清时期的青花瓷，中国陶瓷不断发展创新，形成了丰富多样的风格和技艺。
+          </p>
+          <p class="text-gray-600 mb-6 leading-relaxed">
+            陶瓷制作工艺复杂精细，包括选料、制坯、干燥、修坯、装饰、上釉、烧制等多个环节，每个环节都需要匠人的精心操作和丰富经验。不同地区的陶瓷具有鲜明的地域特色，如景德镇的青花、宜兴的紫砂、德化的白瓷等，都是中国陶瓷艺术的瑰宝。
+          </p>
+        </div>
+      </div>
+      
+  
+    </div>
+  </section>
+
+
+  <!-- 页脚 -->
+  <footer class="bg-dark text-white py-12">
+    <div class="container mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div>
+          <div class="flex items-center space-x-2 mb-4">
+            <i class="fa fa-paint-brush text-secondary text-2xl"></i>
+            <span class="font-serif font-bold text-xl text-white">匠心传承</span>
+          </div>
+          <p class="text-gray-400 mb-4">致力于传统手工艺的保护、传承与创新，让古老技艺在当代焕发新的生机。</p>
+          <div class="flex space-x-4">
+            <a href="#" class="text-gray-400 hover:text-white transition-colors"><i class="fa fa-weibo"></i></a>
+            <a href="#" class="text-gray-400 hover:text-white transition-colors"><i class="fa fa-wechat"></i></a>
+            <a href="#" class="text-gray-400 hover:text-white transition-colors"><i class="fa fa-instagram"></i></a>
+            <a href="#" class="text-gray-400 hover:text-white transition-colors"><i class="fa fa-youtube-play"></i></a>
+          </div>
+        </div>
+        
+        <div>
+          <h3 class="font-bold text-lg mb-4">快速链接</h3>
+          <ul class="space-y-2">
+            <li><a href="index.html" class="text-gray-400 hover:text-white transition-colors">首页</a></li>
+            <li><a href="categories.html" class="text-gray-400 hover:text-white transition-colors">手工艺分类</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white transition-colors">传承人故事</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white transition-colors">文化活动</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white transition-colors">关于我们</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h3 class="font-bold text-lg mb-4">工艺分类</h3>
+          <ul class="space-y-2">
+            <li><a href="categories.html#pottery" class="text-gray-400 hover:text-white transition-colors">陶瓷艺术</a></li>
+            <li><a href="categories.html#weaving" class="text-gray-400 hover:text-white transition-colors">传统编织</a></li>
+            <li><a href="categories.html#carving" class="text-gray-400 hover:text-white transition-colors">木雕工艺</a></li>
+            <li><a href="categories.html#embroidery" class="text-gray-400 hover:text-white transition-colors">刺绣技艺</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white transition-colors">更多分类</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h3 class="font-bold text-lg mb-4">联系我们</h3>
+          <ul class="space-y-2">
+            <li class="flex items-center"><i class="fa fa-map-marker text-secondary mr-2"></i> <span class="text-gray-400">北京市东城区南锣鼓巷</span></li>
+            <li class="flex items-center"><i class="fa fa-phone text-secondary mr-2"></i> <span class="text-gray-400">+86 10 8888 7777</span></li>
+            <li class="flex items-center"><i class="fa fa-envelope text-secondary mr-2"></i> <span class="text-gray-400">contact@jiangxinc.com</span></li>
+          </ul>
+          <div class="mt-4">
+            <h4 class="font-medium mb-2">订阅我们</h4>
+            <div class="flex">
+              <input type="email" placeholder="您的邮箱地址" class="px-3 py-2 bg-gray-700 text-white rounded-l-md focus:outline-none w-full">
+              <button class="bg-primary hover:bg-primary/90 text-white px-3 py-2 rounded-r-md transition-colors">
+                <i class="fa fa-paper-plane"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-500 text-sm">
+        <p>电子商务专升本四班</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // 导航栏滚动效果
+    window.addEventListener('scroll', function() {
+      const navbar = document.getElementById('navbar');
+      if (window.scrollY > 50) {
+        navbar.classList.add('py-2', 'shadow');
+        navbar.classList.remove('py-3');
+      } else {
+        navbar.classList.add('py-3');
+        navbar.classList.remove('py-2', 'shadow');
+      }
+      
+      // 滚动显示动画
+      const sections = document.querySelectorAll('.section-fade');
+      sections.forEach(section => {
+        const sectionTop = section.getBoundingClientRect().top;
+        const windowHeight = window.innerHeight;
+        if (sectionTop < windowHeight * 0.75) {
+          section.classList.add('active');
+        }
+      });
+    });
+    
+    // 移动端菜单切换
+    document.getElementById('menuBtn').addEventListener('click', function() {
+      const mobileMenu = document.getElementById('mobileMenu');
+      mobileMenu.classList.toggle('hidden');
+    });
+    
+    // 平滑滚动
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          const headerHeight = document.getElementById('navbar').offsetHeight + 20;
+          const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+          
+          window.scrollTo({
+            top: targetPosition,
+            behavior: 'smooth'
+          });
+          
+          // 关闭移动菜单
+          document.getElementById('mobileMenu').classList.add('hidden');
+        }
+      });
+    });
+    
+    // 初始加载时触发一次滚动检查
+    window.dispatchEvent(new Event('scroll'));
+  </script>
+</body>
+</html>
